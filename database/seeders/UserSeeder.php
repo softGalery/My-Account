@@ -12,34 +12,31 @@ use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        // Create example permissions if not exist
-        $permissionNames = ['view users', 'create users', 'edit users', 'delete users'];
-        foreach ($permissionNames as $name) {
-            Permission::firstOrCreate(['name' => $name, 'guard_name' => 'web']);
-        }
+        $superAdmin = User::create([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+        $admin = User::create ([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+        // Create role
+        $role = Role::create(['name' => 'admin']);
 
-        // Create roles
-        $role = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
-
-        // Assign all permissions to role
-        $permissions = Permission::pluck('name')->all();
+        //Assign Permissions to Role
+        $permissions = Permission::pluck('id')->all();
         $role->syncPermissions($permissions);
 
-        // Create users
-        $superAdmin = User::firstOrCreate(
-            ['email' => 'superadmin@gmail.com'],
-            ['name' => 'Super Admin', 'password' => Hash::make('password')]
-        );
+        //Assign Permissions to Role
+        $superAdmin -> assignRole($role);
+        $admin->syncRoles($role);
 
-        $admin = User::firstOrCreate(
-            ['email' => 'admin@gmail.com'],
-            ['name' => 'Admin', 'password' => Hash::make('password')]
-        );
-
-        // Assign roles
-        $superAdmin->assignRole($role);
-        $admin->assignRole($role);
     }
 }
