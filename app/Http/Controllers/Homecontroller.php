@@ -8,10 +8,11 @@ class Homecontroller extends Controller
 {
     public function index()
     {
-        return view('backend.index');
+        return view('backend.auth.login-page');
     }
     public function useLogin()
     {
-        return view('backend.auth.login-page');
+        return view('welcome');
+//        return view('backend.index');
     }
 }

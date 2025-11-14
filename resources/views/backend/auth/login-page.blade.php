@@ -60,7 +60,9 @@
 										<p class="mb-0">Please log in to your account</p>
 									</div>
 									<div class="form-body">
-										<form action="" class="row g-3" method="post">
+
+                                            <form method="POST" action="{{ route('login') }}" class="row g-3">
+                                                @csrf
 											<div class="col-12">
 												<label for="inputEmailAddress" class="form-label">Email</label>
 												<input type="email" name="email" class="form-control" id="inputEmailAddress" placeholder="jhon@example.com">

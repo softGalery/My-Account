@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\Homecontroller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Usercontroller;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Homecontroller::class, 'index']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('backend.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -21,3 +22,10 @@ Route::get('/user-login',[Homecontroller::class, 'useLogin']);
 
 
 require __DIR__.'/auth.php';
+
+
+Route::middleware(['auth', 'verified'])->group(function ()
+{
+    Route::get('user-logout', [Usercontroller::class, 'logout'])->name('user.logout');
+}
+);
