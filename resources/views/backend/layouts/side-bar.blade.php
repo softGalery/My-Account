@@ -12,7 +12,7 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
         <li>
-            <a href="index.html" class="">
+            <a href="{{ route('dashboard') }}" class="">
                 <div class="parent-icon"><i class='bx bx-home-alt'></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
@@ -45,7 +45,7 @@
             </a>
             <ul>
                 <li>
-                    <a href="roles-index.html"><i class='bx bx-radio-circle'></i>All Roles</a>
+                    <a href="{{ route('user.role') }}"><i class='bx bx-radio-circle'></i>All Roles</a>
                 </li>
 
                 <li>
