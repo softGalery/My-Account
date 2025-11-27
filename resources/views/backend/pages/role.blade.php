@@ -14,7 +14,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="roles-create.html" class="btn btn-primary">Create Role</a>
+                <a href="{{ route('role.create') }}" class="btn btn-primary">Create Role</a>
             </div>
         </div>
     </div>
@@ -39,16 +39,11 @@
                         @foreach($roles as $role)
                         <tr>
                             <td>1</td>
-                            <td>Super Admin</td>
+                            <td>{{ $role->name }}</td>
                             <td>
-                                <span class="badge bg-danger">user-list</span>
-                                <span class="badge bg-danger">user-create</span>
-                                <span class="badge bg-danger">user-edit</span>
-                                <span class="badge bg-danger">user-delete</span>
-                                <span class="badge bg-danger">role-list</span>
-                                <span class="badge bg-danger">role-create</span>
-                                <span class="badge bg-danger">role-edit</span>
-                                <span class="badge bg-danger">role-delete</span>
+                                @foreach($role->permissions as $permission)
+                                <span class="badge bg-danger">{{ $permission->name }}</span>
+                                @endforeach
                             </td>
                             <td class="d-flex gap-2">
                                 <a href="roles-edit.html" class="btn btn-primary btn-small">edit</a>
@@ -56,20 +51,7 @@
                             </td>
                         </tr>
                         @endforeach
-                        <tr>
-                            <td>2</td>
-                            <td>Admin</td>
-                            <td>
-                                <span class="badge bg-danger">user-list</span>
-                                <span class="badge bg-danger">user-create</span>
-                                <span class="badge bg-danger">user-edit</span>
-                                <span class="badge bg-danger">user-delete</span>
-                            </td>
-                            <td class="d-flex gap-2">
-                                <a href="roles-edit.html" class="btn btn-primary btn-small">edit</a>
-                                <button type="submit" class="btn btn-danger btn-small">delete</button>
-                            </td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>

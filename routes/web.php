@@ -29,5 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function ()
 {
     Route::get('user-logout', [Usercontroller::class, 'logout'])->name('user.logout');
     Route::get('/user-role', [Rolecontroller::class, 'index'])->name('user.role');
+    Route::get('/role/create', [Rolecontroller::class, 'create'])->name('role.create');
+    Route::post('/role', [Rolecontroller::class, 'store'])->name('role.store');
 }
 );
