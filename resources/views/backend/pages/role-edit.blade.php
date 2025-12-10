@@ -7,7 +7,7 @@
                 <div class="ps-3">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bx bx-home-alt"></i></a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Create Role</li>
                         </ol>
@@ -24,13 +24,14 @@
                 <div class="col-lg-8 mx-auto">
                     <div class="card">
                         <div class="card-body p-4">
-                            <h5 class="mb-4">Create Role</h5>
-                            <form action="{{ route('role.store') }}" method="post">
+                            <h5 class="mb-4">Edit Role</h5>
+                            <form action="{{ route('role.update', $role->id) }}" method="post">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-group mb-3">
                                     <label for="name" class="col-sm-3 col-form-label">Role Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value=""
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $role->name }}"
                                                placeholder="Enter Your Role Name">
                                         @error('name')
                                         <div class="text-danger">{{ $message }}</div>
@@ -43,7 +44,7 @@
                                         @foreach($permissions as $permission)
                                         <label class="form-check-label">
                                             <input type="checkbox" name="permission[{{ $permission->id }}]" value="{{ $permission->id }}"
-                                                   class="form-check-input">
+                                                   class="form-check-input" {{ in_array($permission->id, $rolePermissions) ? 'checked': '' }}>
                                             {{ $permission->name }}
                                         </label>
                                         <br />

@@ -30,6 +30,9 @@ Route::middleware(['auth', 'verified'])->group(function ()
     Route::get('user-logout', [Usercontroller::class, 'logout'])->name('user.logout');
     Route::get('/user-role', [Rolecontroller::class, 'index'])->name('user.role');
     Route::get('/role/create', [Rolecontroller::class, 'create'])->name('role.create');
+    Route::get('/role/{id}/edit', [Rolecontroller::class, 'edit'])->name('role.edit');
     Route::post('/role', [Rolecontroller::class, 'store'])->name('role.store');
+    Route::put('/role/{id}/', [Rolecontroller::class, 'update'])->name('role.update');
+    Route::delete('/role/{id}/', [Rolecontroller::class, 'destroy'])->name('role.delete');
 }
 );
