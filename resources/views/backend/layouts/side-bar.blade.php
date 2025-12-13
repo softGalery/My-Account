@@ -63,7 +63,7 @@
             <ul>
 
                 <li>
-                    <a href="user-index.html"><i class='bx bx-radio-circle'></i>All Users</a>
+                    <a href="{{ route('user.index') }}"><i class='bx bx-radio-circle'></i>All Users</a>
                 </li>
 
                 <li>
