@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class Usercontroller extends Controller
 {
@@ -22,7 +24,8 @@ class Usercontroller extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::latest()->get();
+        return view('backend.pages.user-create', compact('roles'));
     }
 
     /**
@@ -30,7 +33,21 @@ class Usercontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|same:confirm_password',
+            'roles' => 'required',
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        $user->assignRole($request->roles);
+        flash()->success('User Created Successfully');
+        return redirect(route('user.index'));
     }
 
     /**
@@ -46,7 +63,10 @@ class Usercontroller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $roles = Role::latest()->get();
+        $userRole = $user->roles->pluck('name')->all();
+        return view('backend.pages.role.user-edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -54,7 +74,27 @@ class Usercontroller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+//        dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email,' . $id,
+            'password' => 'nullable|same:confirm_password',
+            'roles' => 'required',
+        ]);
+        $user = User::findOrFail($id);
+        $user->updateOrCreate([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+        if ($request->has('password')){
+            $user->update([
+                'password' => hash::make($request->password),
+            ]);
+        }
+
+        $user->syncRoles($request->roles);
+        flash()->success('User Updated Successfully');
+        return redirect(route('user.index'));
     }
 
     /**

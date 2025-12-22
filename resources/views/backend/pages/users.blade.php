@@ -14,7 +14,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('role.create') }}" class="btn btn-primary">Create Role</a>
+                <a href="{{ route('user.create') }}" class="btn btn-primary">Create User</a>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
                                 </td>
                                 <td>{{ $user->email }}</td>
                                 <td class="d-flex gap-2">
-                                    <a href="user-edit.html" class="btn btn-primary btn-small">edit</a>
+                                    <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-small">edit</a>
                                     <button type="submit" class="btn btn-danger btn-small">delete</button>
                                 </td>
                             </tr>

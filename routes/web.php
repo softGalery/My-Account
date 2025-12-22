@@ -40,6 +40,10 @@ Route::middleware(['auth', 'verified'])->group(function ()
 
     // All user controller
     Route::get('/users', [Usercontroller::class, 'index'])->name('user.index');
+    Route::get('/users/create', [Usercontroller::class, 'create'])->name('user.create');
+    Route::post('/users/add', [Usercontroller::class, 'store'])->name('user.store');
+    Route::get('/users/{id}/edit', [Usercontroller::class, 'edit'])->name('user.edit');
+    Route::put('/users/{id}', [Usercontroller::class, 'update'])->name('user.update');
 
 
 }
