@@ -49,7 +49,11 @@
                                 <td>{{ $user->email }}</td>
                                 <td class="d-flex gap-2">
                                     <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-small">edit</a>
-                                    <button type="submit" class="btn btn-danger btn-small">delete</button>
+                                    <form method="post" action="{{ route('user.delete', $user->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-small">delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
