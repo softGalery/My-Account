@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\Homecontroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Rolecontroller;
@@ -46,6 +47,9 @@ Route::middleware(['auth', 'verified'])->group(function ()
     Route::put('/users/{id}', [Usercontroller::class, 'update'])->name('user.update');
     Route::delete('/users/{id}', [Usercontroller::class, 'destroy'])->name('user.delete');
 
-
+    // Assets Control Section
+    Route::get('/asset-page',[Assetcontroller::class, 'index'])->name('asset.index');
+    Route::get('/asset-add-page',[Assetcontroller::class, 'addAsset'])->name('asset.addPage');
+    Route::post('/asset-add',[Assetcontroller::class, 'create'])->name('asset.create')->middleware('auth');;
 }
 );

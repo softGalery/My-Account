@@ -22,15 +22,15 @@
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
-                <div class="menu-title">Product</div>
+                <div class="menu-title">Assets</div>
             </a>
             <ul>
                 <li>
-                    <a href="product-index.html"><i class='bx bx-radio-circle'></i>All Product</a>
+                    <a href="{{ route('asset.index') }}"><i class='bx bx-radio-circle'></i>Assets</a>
                 </li>
 
                 <li>
-                    <a href="product-create.html"><i class='bx bx-radio-circle'></i>Create Product</a>
+                    <a href="{{ route('asset.addPage') }}"><i class='bx bx-radio-circle'></i>Add Asset</a>
                 </li>
 
             </ul>
