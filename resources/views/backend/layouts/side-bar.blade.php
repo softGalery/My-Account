@@ -29,9 +29,6 @@
                     <a href="{{ route('asset.index') }}"><i class='bx bx-radio-circle'></i>Assets</a>
                 </li>
 
-                <li>
-                    <a href="{{ route('asset.addPage') }}"><i class='bx bx-radio-circle'></i>Add Asset</a>
-                </li>
 
             </ul>
         </li>

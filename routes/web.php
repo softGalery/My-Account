@@ -49,7 +49,9 @@ Route::middleware(['auth', 'verified'])->group(function ()
 
     // Assets Control Section
     Route::get('/asset-page',[Assetcontroller::class, 'index'])->name('asset.index');
-    Route::get('/asset-add-page',[Assetcontroller::class, 'addAsset'])->name('asset.addPage');
-    Route::post('/asset-add',[Assetcontroller::class, 'create'])->name('asset.create')->middleware('auth');;
+    Route::post('/asset-add',[Assetcontroller::class, 'create'])->name('asset.create');
+    Route::get('/asset-list',[Assetcontroller::class, 'assetsList'])->name('asset.list');
+    Route::post('/asset-delete',[Assetcontroller::class, 'assetDelete'])->name('asset.delete');
+    Route::post('/asset-update',[Assetcontroller::class, 'assetUpdate'])->name('asset.update');
 }
 );
