@@ -52,7 +52,7 @@
         let assetTable = $('#assetTable');
         let assetTableBody = $('#assetTableBody');
 
-
+        assetTableBody.empty();
         res.data.forEach(function (item, index) {
             let row =`<tr>
                         <td>${index+1}</td>
@@ -61,16 +61,29 @@
                         <td>${item['type']}</td>
                         <td>${item['price']}</td>
                          <td class="d-flex gap-2">
-                             <a href="product-edit.html" class="btn btn-primary btn-small">edit</a>
-                             <button type="submit" class="btn btn-danger btn-small">delete</button>
+                             <button data-id="${item['id']}" class="btn editAsset btn-primary btn-small">edit</button>
+                             <button data-id="${item['id']}" class="btn deleteAsset btn-danger btn-small">delete</button>
                          </td>
                       </tr>`
 
             assetTableBody.append(row);
 
+
         })
 
         assetTable.dataTable();
+
+        $('.editAsset').on('click', function (){
+            let id = $(this).data('id');
+            $("#updateAssetModal").modal('show');
+        })
+
+
+        $('.deleteAsset').on('click', function (){
+            let id = $(this).data('id');
+            $("#deleteAssetModal").modal('show');
+            $("#assetDeleteID").val(id);
+        })
     }
 
 </script>

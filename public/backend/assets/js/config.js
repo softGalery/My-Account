@@ -1,28 +1,25 @@
-
 function successToast(msg) {
     Toastify({
+        gravity: "bottom", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
         text: msg,
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        close: true,
-        stopOnFocus: true,
+        className: "mb-5",
         style: {
-            background: "linear-gradient(to right, #00b09b, #96c93d)"
+            background: "green",
         }
-    }).showToast()
+    }).showToast();
 }
 
 function errorToast(msg) {
     Toastify({
+        gravity: "bottom", // `top` or `bottom`
+        position: "center", // `left`, `center` or `right`
         text: msg,
-        duration: 3000,
-        gravity: "top",
-        position: "right",
-        close: true,
-        stopOnFocus: true,
+        className: "mb-5",
         style: {
-            background: "linear-gradient(to right, #ff5f6d, #ffc371)"
+            background: "red",
         }
-    }).showToast()
+    }).showToast();
 }
+
+
