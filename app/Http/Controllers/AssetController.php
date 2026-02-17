@@ -45,6 +45,14 @@ class AssetController extends Controller
         $assets_id = $request->input('id');
         return Asset::where('user_id', $user_id)->where('id', $assets_id)->delete();
     }
+
+    public function assetById(Request $request)
+    {
+        $user_id = Auth::id();
+        $assets_id = $request->input('id');
+        return Asset::where('user_id', $user_id)->where('id', $assets_id)->first();
+    }
+
     public function assetUpdate(Request $request)
     {
         $request->validate([

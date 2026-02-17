@@ -64,11 +64,7 @@
 
 <script>
 
-    axios.defaults.headers.common['X-CSRF-TOKEN'] =
-        document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-
-    document.getElementById("asset-modal-save").addEventListener('click', async function () {
+      document.getElementById("asset-modal-save").addEventListener('click', async function () {
 
         let assetName = document.getElementById('assetName').value;
         let assetDescription = document.getElementById('assetDescription').value;

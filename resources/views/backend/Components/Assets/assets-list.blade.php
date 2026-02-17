@@ -73,8 +73,9 @@
 
         assetTable.dataTable();
 
-        $('.editAsset').on('click', function (){
+        $('.editAsset').on('click',async function (){
             let id = $(this).data('id');
+            await fillUPAssetUpdateForm(id);
             $("#updateAssetModal").modal('show');
         })
 

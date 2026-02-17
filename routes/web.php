@@ -53,5 +53,6 @@ Route::middleware(['auth', 'verified'])->group(function ()
     Route::get('/asset-list',[Assetcontroller::class, 'assetsList'])->name('asset.list');
     Route::post('/asset-delete',[Assetcontroller::class, 'assetDelete'])->name('asset.delete');
     Route::post('/asset-update',[Assetcontroller::class, 'assetUpdate'])->name('asset.update');
+    Route::post('/asset-list-by-id',[Assetcontroller::class, 'assetById'])->name('asset.byID');
 }
 );
