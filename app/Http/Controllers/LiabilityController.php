@@ -43,4 +43,29 @@ class LiabilityController extends Controller
         return Liability::where('user_id', $user_id)->where('id', $id)->delete();
     }
 
+    public function LiabilityByID(Request $request)
+    {
+        $user_id = $request->user()->id;
+        $id = request('id');
+        return Liability::where('user_id', $user_id)->where('id', $id)->first();
+    }
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'type' => 'required',
+            'amount' => 'required|numeric|min:1',
+        ]);
+        $userId = $request->user()->id;
+        $id = $request->input('id');
+        return Liability::where('user_id', $userId)->where('id', $id)->update([
+            'user_id' => $userId,
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'type' => $request->input('type'),
+            'amount' => $request->input('amount'),
+        ]);
+    }
+
 }

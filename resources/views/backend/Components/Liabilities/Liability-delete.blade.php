@@ -14,7 +14,7 @@
                             <div class="card-body p-4">
                                 <h5 class="mb-4">Delete Asset</h5>
                                 <p class="md-3">Once delete, you can't get it back!</p>
-                                <input class="" id="liabilityDeleteID">
+                                <input class="d-none" id="liabilityDeleteID">
                             </div>
                         </div>
                     </div>

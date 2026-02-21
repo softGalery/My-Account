@@ -75,8 +75,8 @@
 
         $('.editLiability').on('click',async function (){
             let id = $(this).data('id');
-            await fillUPAssetUpdateForm(id);
-            $("#updateAssetModal").modal('show');
+            await fillUPLiabilityUpdateForm(id);
+            $("#updateLiabilityModal").modal('show');
         })
 
 
