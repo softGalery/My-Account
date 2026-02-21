@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\Homecontroller;
+use App\Http\Controllers\LiabilityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Rolecontroller;
 use App\Http\Controllers\Usercontroller;
@@ -54,5 +55,12 @@ Route::middleware(['auth', 'verified'])->group(function ()
     Route::post('/asset-delete',[Assetcontroller::class, 'assetDelete'])->name('asset.delete');
     Route::post('/asset-update',[Assetcontroller::class, 'assetUpdate'])->name('asset.update');
     Route::post('/asset-list-by-id',[Assetcontroller::class, 'assetById'])->name('asset.byID');
+
+    // Liabilities Control Section
+    Route::get('/liabilities-page',[Liabilitycontroller::class, 'index'])->name('liability.index');
+    Route::get('/liabilities-list',[Liabilitycontroller::class, 'list'])->name('liability.list');
+    Route::post('/liabilities-create',[Liabilitycontroller::class, 'create'])->name('liability.create');
+    Route::post('/liabilities-delete',[Liabilitycontroller::class, 'deleteLiability'])->name('liability.delete');
+
 }
 );

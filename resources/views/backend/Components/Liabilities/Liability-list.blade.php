@@ -5,24 +5,24 @@
             <ol class="breadcrumb mb-0 p-0">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Assets Table</li>
+                <li class="breadcrumb-item active" aria-current="page">Liabilities Table</li>
             </ol>
         </nav>
     </div>
     <div class="ms-auto">
         <div class="btn-group">
-            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAssetModal">Add Asset</a>
+            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addLiabilityModal">Add Liability</a>
         </div>
     </div>
 </div>
 <!--end breadcrumb-->
-<h6 class="mb-0 text-uppercase">Assets list</h6>
+<h6 class="mb-0 text-uppercase">Liabilities list</h6>
 <hr>
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
             <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap5">
-                <table id="assetTable" class="display table table-striped">
+                <table id="liabilityTable" class="display table table-striped">
                     <thead>
                     <tr>
                         <th>No.</th>
@@ -33,7 +33,7 @@
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody id="assetTableBody">
+                    <tbody id="liabilityTableBody">
 
 
                     </tbody>
@@ -44,46 +44,46 @@
 </div>
 
 <script>
-    getAssetsList();
+    getLiabilityList();
 
-    async function getAssetsList(){
-        let res=await axios.get("/asset-list");
+    async function getLiabilityList(){
+        let res=await axios.get("/liabilities-list");
 
-        let assetTable = $('#assetTable');
-        let assetTableBody = $('#assetTableBody');
+        let liabilityTable = $('#liabilityTable');
+        let liabilityTableBody = $('#liabilityTableBody');
 
-        assetTableBody.empty();
+        liabilityTableBody.empty();
         res.data.forEach(function (item, index) {
             let row =`<tr>
                         <td>${index+1}</td>
                         <td>${item['name']}</td>
                         <td>${item['description']}</td>
                         <td>${item['type']}</td>
-                        <td>${item['price']}</td>
+                        <td>${item['amount']}</td>
                          <td class="d-flex gap-2">
-                             <button data-id="${item['id']}" class="btn editAsset btn-primary btn-small">edit</button>
-                             <button data-id="${item['id']}" class="btn deleteAsset btn-danger btn-small">delete</button>
+                             <button data-id="${item['id']}" class="btn editLiability btn-primary btn-small">edit</button>
+                             <button data-id="${item['id']}" class="btn deleteLiability btn-danger btn-small">delete</button>
                          </td>
                       </tr>`
 
-            assetTableBody.append(row);
+            liabilityTableBody.append(row);
 
 
         })
 
-        assetTable.dataTable();
+        liabilityTable.dataTable();
 
-        $('.editAsset').on('click',async function (){
+        $('.editLiability').on('click',async function (){
             let id = $(this).data('id');
             await fillUPAssetUpdateForm(id);
             $("#updateAssetModal").modal('show');
         })
 
 
-        $('.deleteAsset').on('click', function (){
+        $('.deleteLiability').on('click', function (){
             let id = $(this).data('id');
-            $("#deleteAssetModal").modal('show');
-            $("#assetDeleteID").val(id);
+            $("#deleteLiabilityModal").modal('show');
+            $("#liabilityDeleteID").val(id);
         })
     }
 

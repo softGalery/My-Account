@@ -1,3 +1,5 @@
+{{--This is Asset index page--}}
+
 @extends('backend.layouts.app')
 @section('content')
     <!--breadcrumb-->
