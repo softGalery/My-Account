@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\Homecontroller;
+use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\LiabilityController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Rolecontroller;
@@ -64,5 +65,9 @@ Route::middleware(['auth', 'verified'])->group(function ()
     Route::post('/liabilities-byID',[Liabilitycontroller::class, 'LiabilityByID'])->name('liability.byID');
     Route::post('/liabilities-update',[Liabilitycontroller::class, 'update'])->name('liability.update');
 
+    // Income control section
+    Route::get('/income-page',[Incomecontroller::class, 'index'])->name('income.index');
+    Route::get('/income-list',[Incomecontroller::class, 'list'])->name('income.list');
+    Route::post('/income-create',[Incomecontroller::class, 'create'])->name('income.create');
 }
 );

@@ -5,35 +5,35 @@
             <ol class="breadcrumb mb-0 p-0">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"><i class="bx bx-home-alt"></i></a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Asset Table</li>
+                <li class="breadcrumb-item active" aria-current="page">Income Table</li>
             </ol>
         </nav>
     </div>
     <div class="ms-auto">
         <div class="btn-group">
-            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAssetModal">Add Asset</a>
+            <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addIncomeModal">Add Income</a>
         </div>
     </div>
 </div>
 <!--end breadcrumb-->
-<h6 class="mb-0 text-uppercase">Assets list</h6>
+<h6 class="mb-0 text-uppercase">Income list</h6>
 <hr>
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
             <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap5">
-                <table id="assetTable" class="display table table-striped">
+                <table id="incomeTable" class="display table table-striped">
                     <thead>
                     <tr>
                         <th>No.</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Type</th>
-                        <th>Price</th>
+                        <th>Receive by</th>
+                        <th>Amount</th>
                         <th>Action</th>
                     </tr>
                     </thead>
-                    <tbody id="assetTableBody">
+                    <tbody id="incomeTableBody">
 
 
                     </tbody>
@@ -44,47 +44,47 @@
 </div>
 
 <script>
-    getAssetsList();
+    getIncomeList();
 
-    async function getAssetsList(){
-        let res=await axios.get("/asset-list");
+    async function getIncomeList(){
+        let res=await axios.get("/income-list");
 
-        let assetTable = $('#assetTable');
-        let assetTableBody = $('#assetTableBody');
+        let incomeTable = $('#incomeTable');
+        let incomeTableBody = $('#incomeTableBody');
 
-        assetTableBody.empty();
+        incomeTableBody.empty();
         res.data.forEach(function (item, index) {
             let row =`<tr>
                         <td>${index+1}</td>
                         <td>${item['name']}</td>
                         <td>${item['description']}</td>
                         <td>${item['type']}</td>
-                        <td>${item['price']}</td>
+                        <td>${item['amount']}</td>
                          <td class="d-flex gap-2">
                              <button data-id="${item['id']}" class="btn editAsset btn-primary btn-small">edit</button>
                              <button data-id="${item['id']}" class="btn deleteAsset btn-danger btn-small">delete</button>
                          </td>
                       </tr>`
 
-            assetTableBody.append(row);
+            incomeTableBody.append(row);
 
 
         })
 
-        assetTable.dataTable();
+        incomeTable.dataTable();
 
-        $('.editAsset').on('click',async function (){
-            let id = $(this).data('id');
-            await fillUPAssetUpdateForm(id);
-            $("#updateAssetModal").modal('show');
-        })
-
-
-        $('.deleteAsset').on('click', function (){
-            let id = $(this).data('id');
-            $("#deleteAssetModal").modal('show');
-            $("#assetDeleteID").val(id);
-        })
+        // $('.editAsset').on('click',async function (){
+        //     let id = $(this).data('id');
+        //     await fillUPAssetUpdateForm(id);
+        //     $("#updateAssetModal").modal('show');
+        // })
+        //
+        //
+        // $('.deleteAsset').on('click', function (){
+        //     let id = $(this).data('id');
+        //     $("#deleteAssetModal").modal('show');
+        //     $("#assetDeleteID").val(id);
+        // })
     }
 
 </script>
